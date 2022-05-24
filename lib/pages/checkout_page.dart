@@ -7,6 +7,7 @@ import 'package:charisma_of_india/widgets/Drawer.dart';
 import 'package:charisma_of_india/widgets/NavBar.dart';
 import 'package:charisma_of_india/widgets/searchDelegate.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Checkout extends StatefulWidget {
   const Checkout({Key? key}) : super(key: key);
@@ -19,6 +20,11 @@ class _CheckoutState extends State<Checkout> {
   final List<Menu> _list = Cart.getCart();
   int deliveryFee = 10;
   String email = '';
+
+  void _launchUrl(Uri _url) async {
+    if (!await launchUrl(_url)) throw 'Could not launch $Exception' ;
+  }
+
   @override
   Widget build(BuildContext context) {
     //check if the cart is empty or not
@@ -164,7 +170,9 @@ class _CheckoutState extends State<Checkout> {
                                       onChanged: (String value) {
                                         setState(() {
                                           email = value;
+                                          // send a confirmation email to the given address
                                         });
+                                        //todo: let the user know the order has been placed
                                       },
                                       decoration:const  InputDecoration.collapsed(hintText: 'Enter email to send confirmation to'),
                                     ),
@@ -174,7 +182,13 @@ class _CheckoutState extends State<Checkout> {
                                           child: const Text('Cancel')
                                       ),
                                       TextButton(
-                                          onPressed: ()=> Navigator.pop(context,'OK'),
+                                          onPressed: (){
+                                            _launchUrl(Uri(
+                                                scheme: 'mailto',
+                                                path: email + '?subject=Order Confirmation&body=This is a test, the order has been confirmed%20plugin'
+                                            ));
+                                            Navigator.pop(context,'OK');
+                                          },
                                           child: const Text('OK')
                                       )
                                     ],
