@@ -122,7 +122,7 @@ class _CheckoutState extends State<Checkout> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const Flexible(child: Text('Taxes'), fit: FlexFit.loose,),
-                            Flexible(child: Text('    \$' + Cart.getTaxes().toString()), fit: FlexFit.loose,)
+                            Flexible(child: Text('    \$' + Cart.getTaxes().toStringAsFixed(2)), fit: FlexFit.loose,)
                           ],
                         ),
                         Row(
@@ -138,7 +138,7 @@ class _CheckoutState extends State<Checkout> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             const Flexible(child: Text('Total'), fit: FlexFit.loose,),
-                            Flexible(child: Text('    \$' + Cart.getTotalAmount(Cart.getTotal(),Cart.getTaxes() , deliveryFee).toString(), style: const TextStyle(
+                            Flexible(child: Text('    \$' + Cart.getTotalAmount(Cart.getTotal(),Cart.getTaxes() , deliveryFee.toDouble()).toStringAsFixed(2), style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20
                             ),),

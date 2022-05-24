@@ -93,7 +93,7 @@ class _MenuHomeState extends State<MenuHome> {
                           ElevatedButton(
                               onPressed: () {
                                 //set the number of menu items ordered
-                                _list[index].set_amount(count);
+                                _list[index].set_amount(count.toDouble());
                                 //add the item to the cart list
                                 Cart.addToCart(_list[index]);
                               },

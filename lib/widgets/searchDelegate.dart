@@ -13,7 +13,7 @@ class MySearchDelegate extends SearchDelegate{
 
   String geDishNameFromMenu(String item) {
     for (int value = 0; searchResults.length < value; value++){
-      if (searchResults[value].dishName.toLowerCase() == (item.toLowerCase())) {
+      if (searchResults[value].dishName.toLowerCase().contains(item.toLowerCase())) {
         indexValue = value;
         return searchResults[value].dishName;
       }else{
@@ -25,7 +25,7 @@ class MySearchDelegate extends SearchDelegate{
 
   String geDishNetImageFromMenu(String item) {
     for (int value = 0; searchResults.length < value; value++){
-      if (searchResults[value].networkImage.toLowerCase() == (item.toLowerCase())) {
+      if (searchResults[value].networkImage.toLowerCase().contains(item.toLowerCase())) {
         return searchResults[value].networkImage;
       }else{
         return "Network image not found";
@@ -36,7 +36,7 @@ class MySearchDelegate extends SearchDelegate{
 
   String geDishDescriptFromMenu(String item) {
     for (int value = 0; searchResults.length < value; value++){
-      if (searchResults[value].dishDescription.toLowerCase() == (item.toLowerCase())) {
+      if (searchResults[value].dishDescription.toLowerCase().contains(item.toLowerCase())) {
         return searchResults[value].dishDescription;
       }else{
         return "Dish description value is not found";
@@ -47,7 +47,7 @@ class MySearchDelegate extends SearchDelegate{
 
   String geDishPriceFromMenu(String item) {
     for (int value = 0; searchResults.length < value; value++){
-      if (searchResults[value].price.toString().toLowerCase() == (item.toLowerCase())) {
+      if (searchResults[value].price.toString().toLowerCase().contains(item.toLowerCase())) {
         return searchResults[value].price.toString();
       }else{
         return "Price match not found ";
@@ -58,7 +58,7 @@ class MySearchDelegate extends SearchDelegate{
 
   String geDishAmountMenu(String item) {
     for (int value = 0; searchResults.length < value; value++){
-      if (searchResults[value].amount.toString().toLowerCase() == (item.toLowerCase())) {
+      if (searchResults[value].amount.toString().toLowerCase().contains(item.toLowerCase())) {
         return searchResults[value].amount.toString();
       }else{
         return "Amount was not found";
@@ -69,8 +69,7 @@ class MySearchDelegate extends SearchDelegate{
 
   String geDishSpecialInstructionsMenu(String item) {
     for (int value = 0; searchResults.length < value; value++) {
-      if (searchResults[value].specialInstructions.toLowerCase() ==
-          (item.toLowerCase())) {
+      if (searchResults[value].specialInstructions.toLowerCase().contains(item.toLowerCase())) {
         return searchResults[value].specialInstructions;
       } else {
         return "Special instructions not found list must be empty";
@@ -101,8 +100,9 @@ class MySearchDelegate extends SearchDelegate{
         mainAxisAlignment:  MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.network(geDishNetImageFromMenu(query)),
-          Text(geDishAmountMenu(query)),
+          Image.network(searchResults[indexValue].networkImage),
+          Text(searchResults[indexValue].dishName),
+          Text(searchResults[indexValue].dishDescription),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -111,7 +111,7 @@ class MySearchDelegate extends SearchDelegate{
                   onPressed: () {
                     //decrease the count by 1
                     count -=1;
-                    searchResults[indexValue].set_amount(count);
+                    searchResults[indexValue].set_amount(count.toDouble());
 
                   },
                   icon: const Icon(Icons.remove)
@@ -121,7 +121,7 @@ class MySearchDelegate extends SearchDelegate{
                   onPressed: () {
                     //increment the count
                     count+=1;
-                    searchResults[indexValue].set_amount(count);
+                    searchResults[indexValue].set_amount(count.toDouble());
                   },
                   icon: const Icon(Icons.add)
               )
@@ -134,6 +134,7 @@ class MySearchDelegate extends SearchDelegate{
               ElevatedButton(
                   onPressed: () {
                     //display the generic snack bar
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Item added to cart')));
                     //add the product to the cart listing
                     Cart.addToCart(searchResults[indexValue]);
                   },
@@ -181,7 +182,7 @@ class MySearchDelegate extends SearchDelegate{
                           onPressed: () {
                             //increment the count
                             count -=1;
-                            suggestions[index].set_amount(count);
+                            suggestions[index].set_amount(count.toDouble());
                           },
                           icon: const Icon(Icons.remove)
                       ),
@@ -190,7 +191,7 @@ class MySearchDelegate extends SearchDelegate{
                           onPressed: () {
                             //increment the count
                             count +=1;
-                            suggestions[index].set_amount(count);
+                            suggestions[index].set_amount(count.toDouble());
                           },
                           icon: const Icon(Icons.add)
                       )

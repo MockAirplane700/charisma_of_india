@@ -4,7 +4,7 @@ class Menu {
   final String dishDescription;
   final String networkImage;
   String specialInstructions;
-  final int price;
+  final double price;
   int amount= 1;
 
   Menu({
@@ -12,8 +12,8 @@ class Menu {
     required this.dishDescription, required this.specialInstructions
 });
 
-  void set_amount(int count){
-    amount = count;
+  void set_amount(double count){
+    amount = count.toInt();
   }
 
   int  get_amount() {return amount;}
