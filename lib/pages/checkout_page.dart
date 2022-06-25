@@ -7,7 +7,7 @@ import 'package:charisma_of_india/widgets/Drawer.dart';
 import 'package:charisma_of_india/widgets/NavBar.dart';
 import 'package:charisma_of_india/widgets/searchDelegate.dart';
 import 'package:flutter/material.dart';
-// import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Checkout extends StatefulWidget {
   const Checkout({Key? key}) : super(key: key);
@@ -21,9 +21,9 @@ class _CheckoutState extends State<Checkout> {
   int deliveryFee = 10;
   String email = '';
 
-  // void _launchUrl(Uri _url) async {
-  //   if (!await launchUrl(_url)) throw 'Could not launch $Exception' ;
-  // }
+  void _launchUrl(Uri _url) async {
+    if (!await launchUrl(_url)) throw 'Could not launch $Exception' ;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -183,10 +183,10 @@ class _CheckoutState extends State<Checkout> {
                                       ),
                                       TextButton(
                                           onPressed: (){
-                                            // _launchUrl(Uri(
-                                            //     scheme: 'mailto',
-                                            //     path: email + '?subject=Order Confirmation&body=This is a test, the order has been confirmed%20plugin'
-                                            // ));
+                                            _launchUrl(Uri(
+                                                scheme: 'mailto',
+                                                path: "\$"+email + '?subject=Order Confirmation&body=This is a test, the order has been confirmed%20plugin'
+                                            ));
                                             Navigator.pop(context,'OK');
                                           },
                                           child: const Text('OK')
