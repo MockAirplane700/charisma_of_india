@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:charisma_of_india/customObjects/constants.dart';
+import 'package:charisma_of_india/widgets/Drawer.dart';
 import 'package:charisma_of_india/widgets/searchDelegate.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -27,16 +28,9 @@ class _Web_viewState extends State<Web_view> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Charisma of Inida'),
+        title: const Text('Charisma of Inida', style: TextStyle(color: primaryTextColor),),
         backgroundColor: primaryAppBarColor,
-        actions: [
-          IconButton(
-              onPressed: () {
-                showSearch(context: context, delegate: MySearchDelegate());
-              },
-              icon: const Icon(Icons.search)
-          )
-        ],
+        iconTheme: const IconThemeData(color: primaryTextColor),
       ),
       backgroundColor: primaryBackgroundColor,
       body: Center(
@@ -46,6 +40,7 @@ class _Web_viewState extends State<Web_view> {
           initialUrl: "https://charismaofindia.ca/",
         ),
       ),
+      drawer: const CustomDrawer(),
     );
   }
 }

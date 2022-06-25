@@ -3,6 +3,7 @@
 import 'package:charisma_of_india/customObjects/about.dart';
 import 'package:charisma_of_india/customObjects/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -21,20 +22,30 @@ class _CustomDrawerState extends State<CustomDrawer> {
       email: 'hmtrivedi@hotmail.com',
       address: 'Wosleley on Sherbrook Street'
   );
+
+  void _launchUrl() async {
+    final Uri _url = Uri(
+      scheme: 'tel',
+      path: phoneNumber
+    );
+    if (!await launchUrl(_url)) throw 'Could not launch $_url';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          DrawerHeader(
-            decoration: const BoxDecoration(color: primaryDrawerColor),
-              child: CircleAvatar(child: Icon(Icons.person, size: MediaQuery.of(context).size.width/5,),)
+          const DrawerHeader(
+            decoration: BoxDecoration(color: primaryDrawerColor),
+              child: CircleAvatar(backgroundImage: AssetImage('icons/logo.png'),)
           ),
           ListTile(
             title: const Text('Contact help'),
             onTap: () {
               //todo: use url_launcher to call help line or text it natively
+              _launchUrl();
               Navigator.pop(context,'');
             },
           ),
