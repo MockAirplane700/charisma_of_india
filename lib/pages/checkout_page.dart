@@ -7,6 +7,7 @@ import 'package:charisma_of_india/widgets/Drawer.dart';
 import 'package:charisma_of_india/widgets/NavBar.dart';
 import 'package:charisma_of_india/widgets/searchDelegate.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter_email_sender/flutter_email_sender.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
 class Checkout extends StatefulWidget {
@@ -24,6 +25,7 @@ class _CheckoutState extends State<Checkout> {
   // void _launchUrl(Uri _url) async {
   //   if (!await launchUrl(_url)) throw 'Could not launch $Exception' ;
   // }
+
 
   @override
   Widget build(BuildContext context) {
@@ -181,16 +183,25 @@ class _CheckoutState extends State<Checkout> {
                                           onPressed: ()=> Navigator.pop(context, 'Cancel'),
                                           child: const Text('Cancel')
                                       ),
-                                      TextButton(
-                                          onPressed: (){
-                                            // _launchUrl(Uri(
-                                            //     scheme: 'mailto',
-                                            //     path: email + '?subject=Order Confirmation&body=This is a test, the order has been confirmed%20plugin'
-                                            // ));
-                                            Navigator.pop(context,'OK');
-                                          },
-                                          child: const Text('OK')
-                                      )
+                                      // TextButton(
+                                      //     onPressed: () async {
+                                      //       // _launchUrl(Uri(
+                                      //       //     scheme: 'mailto',
+                                      //       //     path: email + '?subject=Order Confirmation&body=This is a test, the order has been confirmed%20plugin'
+                                      //       // ));
+                                      //       Email _email = Email(
+                                      //         body: 'This is a test for order confirmation order',
+                                      //         subject: 'Confirmation email from Charisma of India',
+                                      //         recipients: [email],
+                                      //         cc: ['sizibamthandazo@yahoo.com'],
+                                      //         bcc: ['Synthex2020@gmail.com'],
+                                      //         isHTML: false
+                                      //       );
+                                      //       await FlutterEmailSender.send(_email);
+                                      //       Navigator.pop(context,'OK');
+                                      //     },
+                                      //     child: const Text('OK')
+                                      // )
                                     ],
                                   )
                               );
