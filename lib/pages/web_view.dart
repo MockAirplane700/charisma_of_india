@@ -28,7 +28,7 @@ class _Web_viewState extends State<Web_view> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Charisma of Inida', style: TextStyle(color: primaryTextColor),),
+        title: const Text('Charisma of India', style: TextStyle(color: primaryTextColor),),
         backgroundColor: primaryAppBarColor,
         iconTheme: const IconThemeData(color: primaryTextColor),
       ),

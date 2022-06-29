@@ -29,9 +29,8 @@
 		<string>https</string>
 		<string>http</string>
 		<string>sms</string>
-        <string>tel</string>
+		<string>tel</string>
 	</array>
-
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
